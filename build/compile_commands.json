@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/gesterom/projekty/magicChess/build",
+  "command": "/usr/bin/c++   -I/home/gesterom/projekty/magicChess/./include    -o CMakeFiles/a.out.dir/main.cpp.o -c /home/gesterom/projekty/magicChess/main.cpp",
+  "file": "/home/gesterom/projekty/magicChess/main.cpp"
+}
+]
