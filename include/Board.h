@@ -10,10 +10,11 @@ using Fild=int;
 
 using FildPosition = std::pair<int,int>;
 
-class Board
+class Board 
 {
 	std::array<Fild,BORDHIGHT * BORDWIGHT> board;
 	public:
 	AttacResualt attac(FildPosition attacer,FildPosition defender);
 	MoveResualt move(FildPosition from,FildPosition to);
+	Board();
 };

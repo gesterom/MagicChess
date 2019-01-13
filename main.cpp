@@ -83,19 +83,4 @@ void clear()
 
 int main()
 {
-Exit exit;
-MenuConfig main = {{"First",exit}, {"Second",exit},{"Exit",exit}};
-MenuConfig first = {{"Back",main},{"aaaa",exit}};
-
-	Menu menu(main);
-	IContext& context = menu;
-	while(true)
-	{
-		clear();
-		context.print();
-		Input input = userInput();
-		context.update(input);
-		if(context.exit(input)) return 0;
-		context = context.updateContext();
-	}
 }
