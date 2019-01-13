@@ -1,20 +1,29 @@
+#pragma once
+
 #include <array>
+#include "constans.h"
+#include "FildPosition.h"
+#include "IPawn.h"
+#include "Fild.h"
 
+class DamageRasualt;
 
-const int BORDHIGHT = 16;
-const int BORDWIGHT = 16;
+class AttackResualt
+{
+	bool x;
+	public:
+	AttackResualt( bool aa ) {
+	this->x = aa;	
+	}
+};
 
-using AttacResualt = bool;
 using MoveResualt = bool;
-using Fild=int;
-
-using FildPosition = std::pair<int,int>;
 
 class Board 
 {
 	std::array<Fild,BORDHIGHT * BORDWIGHT> board;
 	public:
-	AttacResualt attac(FildPosition attacer,FildPosition defender);
+	AttackResualt attack(FildPosition attacer,FildPosition defender);
 	MoveResualt move(FildPosition from,FildPosition to);
 	Board();
 };
