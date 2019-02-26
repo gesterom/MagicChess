@@ -10,7 +10,9 @@ class FildPosition
 		this->x = x;
 		this->y = y;
 	}
-	int getIDonBoard(){
+	int getX() const {return this->x;}
+	int geyY() const {return this->y;}
+	int getIDonBoard() const {
 		return x+y*BORDWIGHT;
 	}
 };

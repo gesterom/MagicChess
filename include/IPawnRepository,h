@@ -1,0 +1,9 @@
+
+
+class IPawnRepository
+{
+	virtual Pawn createPawn(PawnID);
+	vritual PawnStat getStats(PawnID);
+	virtual PosibleMoves moves(PawnID);
+	virtual ~IPawnRepository(){}
+};

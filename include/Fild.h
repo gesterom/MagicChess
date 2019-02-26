@@ -4,11 +4,19 @@
 
 class Fild
 {
-	IPawn* pawn;
+	IPawn* pawn = nullptr;
 	public:
 	Fild()
 	{}
-	bool havePawn(){
+	void setPawn(IPawn* pawn)
+	{
+		this->pawn = pawn;
+	}
+	void removePawn()
+	{
+		pawn = nullptr;
+	}
+	bool havePawn() const {
 		if(pawn != nullptr) return true;
 		return false;
 	}

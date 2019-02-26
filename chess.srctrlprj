@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <source_groups>
+        <source_group_b009f135-606f-4325-a739-a95ac13cd2ef>
+            <build_file_path>
+                <compilation_db_path>build/compile_commands.json</compilation_db_path>
+            </build_file_path>
+            <compiler_flags>
+                <compiler_flag>--std=c++17</compiler_flag>
+            </compiler_flags>
+            <indexed_header_paths>
+                <indexed_header_path>include</indexed_header_path>
+                <indexed_header_path>src</indexed_header_path>
+            </indexed_header_paths>
+            <name>C/C++ from Compilation Database</name>
+            <status>enabled</status>
+            <type>C/C++ from Compilation Database</type>
+        </source_group_b009f135-606f-4325-a739-a95ac13cd2ef>
+    </source_groups>
+    <version>7</version>
+</config>

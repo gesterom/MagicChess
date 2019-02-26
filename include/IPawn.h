@@ -2,22 +2,11 @@
 
 #include <vector>
 
+class Damage;
 class Fild;
 class FildPosition;
-class Damage
-{
-	int x;
-	public:
-	Damage() : x(0){}
- 	int get(){return x;}	
-};
-
-class DamageRasualt
-{
-
-};
-
-using Filds=std::vector<Fild>;
+class DamageRasualt;
+class Filds;
 
 class IPawn
 {

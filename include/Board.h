@@ -2,28 +2,19 @@
 
 #include <array>
 #include "constans.h"
-#include "FildPosition.h"
-#include "IPawn.h"
+#include "IBoard.h"
+#include "IDrawable.h"
 #include "Fild.h"
 
 class DamageRasualt;
+class FildPosition;
 
-class AttackResualt
-{
-	bool x;
-	public:
-	AttackResualt( bool aa ) {
-	this->x = aa;	
-	}
-};
-
-using MoveResualt = bool;
-
-class Board 
+class Board : public IBoard, public IDrawable
 {
 	std::array<Fild,BORDHIGHT * BORDWIGHT> board;
 	public:
-	AttackResualt attack(FildPosition attacer,FildPosition defender);
-	MoveResualt move(FildPosition from,FildPosition to);
+	virtual std::string image() override ;
+	virtual AttackResualt attack(FildPosition attacer,FildPosition defender) override;
+	virtual MoveResualt move(FildPosition from,FildPosition to) override;
 	Board();
 };
