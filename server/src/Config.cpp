@@ -36,6 +36,8 @@ Config::Config(std::string filename)
 		std::string key,value;
 		if(str[0] == '[' and str[str.size()-1] == ']')  // section detected 
 		{
+			str.erase(0, 1);
+			str.erase(str.size() - 1);
 			section_name = str;
 			continue;
 		}
