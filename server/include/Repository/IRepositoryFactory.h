@@ -1,8 +1,7 @@
 #pragma once
 
-class IRepositoryFactory
-{
-	public:
-		virtual ~IRepositoryFactory(){}
+class IRepositoryFactory {
+  public:
+	virtual ~IRepositoryFactory() {}
 };
 
