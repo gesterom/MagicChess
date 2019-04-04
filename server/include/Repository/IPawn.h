@@ -1,8 +1,9 @@
 #pragma once
-#include "interface" //TODO probably to remove
+#include "interface.h" //TODO probably to remove
+#include "Result.h"
 namespace Repository {
-	class IPaw {
+	class IPawn {
 	  public:
-		virtual ID::Entity::Pawn getPawnID( ID::Entity::Field ) = 0 ;
+		virtual Result<ID::Entity::Pawn> getPawnID( ID::Entity::Field ) const = 0 ;
 	};
 }
