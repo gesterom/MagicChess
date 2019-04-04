@@ -3,8 +3,7 @@
 
 class Config;
 
-class RepositoryFactory : public IRepositoryFactory
-{
-	public:
-		RepositoryFactory(const Config& config);
-};												
+class RepositoryFactory : public IRepositoryFactory {
+  public:
+	RepositoryFactory( const Config& config );
+};
