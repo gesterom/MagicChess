@@ -1,7 +1,7 @@
 #pragma once
 
 
-template<typnename Type, typnename Error>
+template<typename Type, typename Error=bool>
 class Result final
 {
 	Type* _res;
@@ -10,7 +10,7 @@ class Result final
 	Result(Type* res) : _res(res) {}
 	Result(Error error) : _error(error) {}
 	operator bool(){
-		return std::static_cast<bool>(_error);
+		return static_cast<bool>(_error);
 	}
 	Error error() const {
 		return _error;
