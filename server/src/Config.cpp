@@ -74,14 +74,12 @@ Config::Config( std::string filename ) {
 	}
 }
 
-Config::Config( const  Config& other )
-{
+Config::Config( const  Config& other ) {
 	this->map = other.map;
 }
 
-Config::Config (Config&& other)
-{
-	this->map = std::move(other.map);
+Config::Config ( Config&& other ) {
+	this->map = std::move( other.map );
 }
 
 template<>

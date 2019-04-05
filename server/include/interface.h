@@ -43,8 +43,7 @@ namespace DAO {
 		ID::Type::Card type;
 	};
 
-	struct Field
-	{
+	struct Field {
 		ID::Entity::Field id;
 		ID::Entity::Pawn pawn;
 	};

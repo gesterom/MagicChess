@@ -1,34 +1,29 @@
 #pragma once
 
 
-template<typename Type, typename Error=bool>
-class Result final
-{
+template<typename Type, typename Error = bool>
+class Result final {
 	Type _res;
 	Error _error;
-	public:
-	Result(Type res) : _res(res) {}
-	Result(Error error) : _error(error) {}
-	operator bool(){
-		return not static_cast<bool>(_error);
+  public:
+	Result( Type res ) : _res( res ) {}
+	Result( Error error ) : _error( error ) {}
+	operator bool() {
+		return not static_cast<bool>( _error );
 	}
 	Error error() const {
 		return _error;
 	}
-	Type* operator*() const 
-	{
+	Type* operator*() const {
 		return &_res;
 	}
-	Type* operator->() const 
-	{
+	Type* operator->() const {
 		return &_res;
 	}
-	Type* operator*()
-	{
+	Type* operator*() {
 		return &_res;
 	}
-	Type* operator->()
-	{
+	Type* operator->() {
 		return &_res;
 	}
 	~Result()
@@ -36,37 +31,31 @@ class Result final
 };
 
 template<typename Type, typename Error>
-class Result<Type*,Error> 
-{
+class Result<Type*, Error> {
 	Type* _res;
 	Error _error;
-	public:
-	Result(Type* res) : _res(res) {}
-	Result(Error error) : _error(error) {}
-	operator bool(){
-		return not static_cast<bool>(_error);
+  public:
+	Result( Type* res ) : _res( res ) {}
+	Result( Error error ) : _error( error ) {}
+	operator bool() {
+		return not static_cast<bool>( _error );
 	}
 	Error error() const {
 		return _error;
 	}
-	Type* operator*() const 
-	{
+	Type* operator*() const {
 		return _res;
 	}
-	Type* operator->() const 
-	{
+	Type* operator->() const {
 		return _res;
 	}
-	Type* operator*()
-	{
+	Type* operator*() {
 		return _res;
 	}
-	Type* operator->()
-	{
+	Type* operator->() {
 		return _res;
 	}
-	~Result()
-	{
+	~Result() {
 		delete _res;
 	}
 };
