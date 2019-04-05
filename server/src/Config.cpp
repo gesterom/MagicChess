@@ -74,6 +74,16 @@ Config::Config( std::string filename ) {
 	}
 }
 
+Config::Config( const  Config& other )
+{
+	this->map = other.map;
+}
+
+Config::Config (Config&& other)
+{
+	this->map = std::move(other.map);
+}
+
 template<>
 std::string Config::get( std::string key ) const {
 	std::string res;
