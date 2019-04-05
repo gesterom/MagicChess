@@ -1,11 +1,11 @@
 #pragma once
-#include "Repository/IPawn.h"
+#include "Repository/IBoard.h"
 
 namespace Repository {
-	class Pawn : public Repository::IPawn {
+	class Board : public Repository::IBoard {
 		std::vector<DAO::Field*>& board;
-		public:
-		Pawn(std::vector<DAO::Field*>& board);
+	  public:
+		Board( std::vector<DAO::Field*>& board );
 		virtual Result<ID::Entity::Pawn> getPawnID( ID::Entity::Field ) const override;
 	};
 }
