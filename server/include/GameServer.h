@@ -1,15 +1,15 @@
 #pragma once
 #include "Config.h"
-
+#include "Repository/IRepositoryFactory.h"
 #include "interface.h" // FIXME remove it too much dependency 
 
 class Config;
-class IRepositoryFactory;
 
 class GameServer {
 	int hight, wight;
-	std::vector<ID::Entity::Field> board;
+	Repository::IBoard* repoBoard;
   public:
 	GameServer( const Config& config, const IRepositoryFactory& repo );
 	void run();
+	~GameServer();
 };

@@ -7,14 +7,15 @@
 GameServer::GameServer( const Config& config, const IRepositoryFactory& repoFactory ) {
 	this->hight = config.get<int>( "hight" );
 	this->wight = config.get<int>( "wight" );
-
-	for( int i = 0 ; i < hight ; i++ ) {
-		for( int j = 0 ; j < wight ; j++ ) {
-			this->board.push_back( i * wight + j );
-		}
-	}
-
+		
+	this->repoBoard = repoFactory.board();
+		
 	//this->board.resize(this->hight*this->wight);
+}
+
+GameServer::~GameServer()
+{
+	delete repoBoard;
 }
 
 void printHline( int wight ) {
@@ -41,20 +42,20 @@ void printINT( int x ) {
 	std::cout << x;
 }
 
-void printBoard( std::vector<ID::Entity::Field> board, int hight, int wight ) {
+void printBoard( Repository::IBoard*  board, int hight, int wight ) {
 	for( int i = 0 ; i < hight ; i++ ) {
 		printHline( wight );
 
 		for( int j = 0 ; j < wight ; j++ ) {
 			std::cout << "|";
-			printINT( board[i * wight + j] );
+			printINT( board->getFields()[i * wight + j] );
 		}
 
 		std::cout << "|" << std::endl;
 
 		for( int j = 0 ; j < wight ; j ++ ) {
 			std::cout << '|';
-			std::cout << "   "; // print pawn img;
+			printINT(board->getPawnID(i*wight+j) ) ; 
 		}
 
 		std::cout << "|\n";
@@ -70,7 +71,7 @@ void GameServer::run() {
 		std::cin >> input;
 
 		if( input == "board" ) {
-			printBoard( this->board, this->hight, this->wight );
+			printBoard( this->repoBoard, this->hight, this->wight );
 		}
 		else if( input == "hand" ) {}
 		else if( input == "attack" ) {}
