@@ -2,24 +2,23 @@
 
 //Repository::Board::Board( std::vector<DAO::Field*>& board ) : board( board ) {}
 
-Repository::Board::Board(){
+Repository::Board::Board() {
 	//FIXME add config
-	for(unsigned int i = 0 ; i < 16 ; i++)
-	{
-		for( unsigned int j = 0 ; j< 16 ;j++)
-		{
-			this->board.push_back({i*16+j,0});
+	for( unsigned int i = 0 ; i < 16 ; i++ ) {
+		for( unsigned int j = 0 ; j < 16 ; j++ ) {
+			this->board.push_back( {i * 16 + j, 0} );
 		}
-	}		
+	}
 }
 
 std::vector<ID::Entity::Field> Repository::Board::getFields() const {
 	std::vector<ID::Entity::Field> res;
-	for(auto i : this->board)
-	{
-		res.push_back(i.id);
+
+	for( auto i : this->board ) {
+		res.push_back( i.id );
 	}
-return res;	
+
+	return res;
 }
 
 Result<ID::Entity::Pawn> Repository::Board::getPawnID( ID::Entity::Field field ) const {

@@ -1,11 +1,10 @@
 #pragma once
 #include "Repository/IBoard.h"
 
-namespace Repository{
+namespace Repository {
 
 	class Board : public Repository::IBoard {
-		struct Field
-		{
+		struct Field {
 			ID::Entity::Field id;
 			ID::Entity::Pawn pawn;
 		};

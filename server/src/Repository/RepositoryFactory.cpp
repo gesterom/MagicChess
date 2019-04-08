@@ -3,7 +3,7 @@
 #include "Repository/Board.h"
 
 RepositoryFactory::RepositoryFactory( const Config& config ) {
-	
+
 }
 
 Repository::IBoard* RepositoryFactory::board() const {

@@ -12,10 +12,10 @@
 
 namespace ID {
 	namespace Entity {
-		using Field = uint32_t;
-		using Card = uint32_t;
-		using Pawn = uint32_t;
-		using Player = uint32_t;
+		using Field		= uint32_t;
+		using Card 		= uint32_t;
+		using Pawn 		= uint32_t;
+		using Player	= uint32_t;
 	}
 	namespace Type {
 		using Pawn = uint32_t;

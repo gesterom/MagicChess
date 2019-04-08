@@ -7,6 +7,6 @@ namespace Repository {
 	  public:
 		virtual Result<ID::Entity::Pawn> getPawnID( ID::Entity::Field ) const = 0 ;
 		virtual std::vector<ID::Entity::Field> getFields() const = 0;
-		virtual ~IBoard(){}
+		virtual ~IBoard() {}
 	};
 }
