@@ -14,5 +14,8 @@ int main( int argc, char** args ) {
 	RepositoryFactory repositoryFactory( config );
 	// IOGate gate;
 	GameServer gameServer( config, repositoryFactory );
+
+	IOGate gate( repositoryFactory, gameServer );
+	gate.run();
 	std::cout << "Sever Close" << std::endl;
 }

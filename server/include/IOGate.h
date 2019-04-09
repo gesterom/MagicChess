@@ -1,17 +1,16 @@
 #pragma once
-#include "Output.h"
-//#include "GameServer.h"
+#include "GameServer.h"
 #include <iostream>
+#include "Repository/RepositoryFactory.h"
+#include "Repository/IBoard.h"
 
-class IOGate : public Output {
-	std::istream& in = std::cin;
-	std::ostream& out = std::cout;
-	//GameServer& game;
+class IOGate  {
+	std::istream& in;
+	std::ostream& out;
+	GameServer& game;
+	const Repository::IBoard* repoBoard;
   public:
-	IOGate( std::istream& in, std::ostream& out );
-	virtual void sendFields( std::vector<ID::Entity::Field> ) override;
-	virtual void sendPawns( std::vector<ID::Entity::Pawn> ) override;
-	virtual void send( std::string ) override;
+	IOGate( const RepositoryFactory& repoFactory /*, */, GameServer& gameServer, std::istream& in = std::cin, std::ostream& out = std::cout );
 	void run();
 	virtual ~IOGate();
 };

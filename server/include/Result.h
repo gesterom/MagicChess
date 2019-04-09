@@ -3,10 +3,11 @@
 
 template<typename Type, typename Error = bool>
 class Result final {
+  public:
 	Type _res;
 	Error _error;
   public:
-	Result( Type res ) : _res( res ) {}
+	Result( Type res ) : _res( res ), _error(false) {}
 	Result( Error error ) : _error( error ) {}
 	operator bool() {
 		return not static_cast<bool>( _error );
@@ -14,17 +15,20 @@ class Result final {
 	Error error() const {
 		return _error;
 	}
-	Type* operator*() const {
-		return &_res;
+	Type& operator*() const {
+		return _res;
 	}
-	Type* operator->() const {
-		return &_res;
+	Type& operator->() const {
+		return _res;
 	}
-	Type* operator*() {
-		return &_res;
+	Type& operator*() {
+		return _res;
 	}
-	Type* operator->() {
-		return &_res;
+	Type& operator->() {
+		return _res;
+	}
+	Type& value() {
+		return _res;
 	}
 	~Result()
 	{	}
@@ -53,6 +57,9 @@ class Result<Type*, Error> {
 		return _res;
 	}
 	Type* operator->() {
+		return _res;
+	}
+	Type* value() {
 		return _res;
 	}
 	~Result() {

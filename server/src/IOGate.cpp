@@ -1,15 +1,14 @@
 #include "IOGate.h"
 #include <iostream>
+#include <algorithm>
 
-IOGate::IOGate( std::istream& in, std::ostream& out ) :
+IOGate::IOGate( const RepositoryFactory& repoFactory, GameServer& gameServer, std::istream& in, std::ostream& out ) :
 	in( in ),
-	out( out ) {
-
+	out( out ),
+	game( gameServer ) {
+	repoBoard = repoFactory.board();
+	std::cout<<"Board <> : "<<std::hex<<repoBoard<<std::dec<<std::endl;
 }
-
-void IOGate::sendFields( std::vector<ID::Entity::Field> ) {}
-void IOGate::sendPawns( std::vector<ID::Entity::Pawn> ) {}
-void IOGate::send( std::string ) {}
 
 // void printHline( int wight ) {
 // 	for( int i = 0 ; i < wight * 2 + 1 ; i++ ) {
@@ -57,15 +56,55 @@ void IOGate::send( std::string ) {}
 // 	printHline( wight );
 // }
 
+void printBoard(std::ostream& out, const Repository::IBoard* board){
+	auto fields = board->getFields();
+	std::sort(fields.begin(),fields.end());
+	for(int i = 0 ; i < 16 ; i++){
+		for(int j =0; j<16;j++)
+		{
+			out<<"+---+";
+		}
+		out<<"\n";
+		for(int j = 0 ;j<16;j++)
+		{
+			out<<"|";
+			out.width(3);
+			out<<fields[i*16+j];
+			out.width();
+			out<<"|";
+		}
+		out<<"\n";
+		for(int j = 0 ;j<16;j++)
+		{
+			out<<"|";
+			out.width(3);
+			if(auto[res,error] = board->getPawnID(fields[i*16+j]); error ==true){
+				out<<".";
+			}
+			else{
+				out<<res;
+			}
+			out.width();
+			out<<"|";
+		}
+		out<<"\n";
+		for(int j =0; j<16;j++)
+		{
+			out<<"+---+";
+		}
+		out<<"\n";
+	}
+}
+
 void IOGate::run() {
 	while( true ) {
 		std::string input;
-		std::cin >> input;
+		out << "Prompt > ";
+		getline( in, input );
+		out << input << "\n";
 
 		if( input == "board" ) {
-			//auto filds = game.getFields();
-			//auto pawns = game.getPawns();
-			//printBoard( this->repoBoard, this->hight, this->wight );
+			printBoard(out,repoBoard);
 		}
 		else if( input == "hand" ) {}
 		else if( input == "attack" ) {}
@@ -78,5 +117,6 @@ void IOGate::run() {
 		}
 	}
 }
+
 IOGate::~IOGate()
 {}
