@@ -2,85 +2,49 @@
 #include "Config.h"
 #include "Repository/IRepositoryFactory.h"
 
+#include <sstream> //FIXME
+
+struct Point {
+	int x;
+	int y;
+};
+
+template<>
+Point Config::get<Point>( std::string key ) const {
+	auto str = this->get<std::string>( key );
+	std::stringstream ss( str );
+	getline( ss, str, ',' );
+	Point res;
+	res.x = atoi( str.c_str() );
+	getline( ss, str );
+	res.y = atoi( str.c_str() );
+	return res;
+}
+
 #include <iostream>
 
-GameServer::GameServer( const Config& config, const IRepositoryFactory& repoFactory ) {
+GameServer::GameServer( const Config& config, IRepositoryFactory& repoFactory ) {
 	this->hight = config.get<int>( "hight" );
 	this->wight = config.get<int>( "wight" );
-		
+
+	Point PlayerW = config.get<Point>( "PlayerW" );
+	Point PlayerB = config.get<Point>( "PlayerB" );
+
 	this->repoBoard = repoFactory.board();
-		
-	//this->board.resize(this->hight*this->wight);
+
+	std::cout << "Wx : " << PlayerW.x << " y: " << PlayerW.y << "\n";
+	std::cout << "Bx : " << PlayerB.x << " y: " << PlayerB.y << "\n";
+
+	//INIT GAME STATE
+	if( repoBoard->spawnPawn( PlayerW.y * this->wight + PlayerW.x, 1 ) ) {
+		std::cout << "error" << std::endl;
+	}//<<std::endl;;
+
+	std::cout << ( repoBoard->spawnPawn( PlayerB.y * this->wight + PlayerB.x, 2 ) ) << std::endl;;
+	
+	std::cout<<"Board - "<<std::hex<<repoBoard<<std::dec<<std::endl;
 }
 
-GameServer::~GameServer()
-{
-	delete repoBoard;
+GameServer::~GameServer() {
 }
 
-void printHline( int wight ) {
-	for( int i = 0 ; i < wight * 2 + 1 ; i++ ) {
-		if( i % 2 == 1 ) {
-			std::cout << "---";
-		}
-		else {
-			std::cout << '+';
-		}
-	}
-
-	std::cout << std::endl;
-}
-
-void printINT( int x ) {
-	if( x >= 10 and x < 100 ) {
-		std::cout << " ";
-	}
-	else if( x < 10 ) {
-		std::cout << "  ";
-	}
-
-	std::cout << x;
-}
-
-void printBoard( Repository::IBoard*  board, int hight, int wight ) {
-	for( int i = 0 ; i < hight ; i++ ) {
-		printHline( wight );
-
-		for( int j = 0 ; j < wight ; j++ ) {
-			std::cout << "|";
-			printINT( board->getFields()[i * wight + j] );
-		}
-
-		std::cout << "|" << std::endl;
-
-		for( int j = 0 ; j < wight ; j ++ ) {
-			std::cout << '|';
-			printINT(board->getPawnID(i*wight+j) ) ; 
-		}
-
-		std::cout << "|\n";
-	}
-
-	printHline( wight );
-}
-
-void GameServer::run() {
-	//TODO add commmand executor, remove iostream
-	while( true ) {
-		std::string input;
-		std::cin >> input;
-
-		if( input == "board" ) {
-			printBoard( this->repoBoard, this->hight, this->wight );
-		}
-		else if( input == "hand" ) {}
-		else if( input == "attack" ) {}
-		else if( input == "move" ) {}
-		else if( input == "exit" ) {
-			break;
-		}
-		else {
-			std::cerr << "error : bad input :" << input << std::endl;
-		}
-	}
-}

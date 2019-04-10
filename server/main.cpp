@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Repository/RepositoryFactory.h"
 #include "GameServer.h"
+#include "IOGate.h"
 
 int main( int argc, char** args ) {
 	if( argc < 2 ) {
@@ -11,7 +12,10 @@ int main( int argc, char** args ) {
 
 	Config config( args[1] );
 	RepositoryFactory repositoryFactory( config );
+	// IOGate gate;
 	GameServer gameServer( config, repositoryFactory );
-	gameServer.run();
+
+	IOGate gate( repositoryFactory, gameServer );
+	gate.run();
 	std::cout << "Sever Close" << std::endl;
 }

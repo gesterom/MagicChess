@@ -4,7 +4,8 @@
 
 class IRepositoryFactory {
   public:
-	virtual Repository::IBoard* board() const = 0;
+	virtual const Repository::IBoard* board() const = 0;
+	virtual Repository::IBoard* board() = 0;
 	virtual ~IRepositoryFactory() {}
 };
 
