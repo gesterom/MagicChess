@@ -16,6 +16,7 @@ namespace ID {
 		using Card 		= uint32_t;
 		using Pawn 		= uint32_t;
 		using Player	= uint32_t;
+		using Deck		= uint32_t;
 	}
 	namespace Type {
 		using Pawn = uint32_t;
