@@ -7,7 +7,7 @@ class Result final {
 	Type _res;
 	Error _error;
   public:
-	Result( Type res ) : _res( res ), _error(false) {}
+	Result( Type res ) : _res( res ), _error( false ) {}
 	Result( Error error ) : _error( error ) {}
 	operator bool() {
 		return not static_cast<bool>( _error );

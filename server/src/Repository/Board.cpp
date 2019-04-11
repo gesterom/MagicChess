@@ -4,7 +4,8 @@
 #include <iostream>
 
 Repository::Board::Board() {
-	std::cout<<"Board["<<std::hex<<this<<std::dec<<"]\n";
+	std::cout << "Board[" << std::hex << this << std::dec << "]\n";
+
 	//FIXME add config
 	for( unsigned int i = 0 ; i < 16 ; i++ ) {
 		for( unsigned int j = 0 ; j < 16 ; j++ ) {
@@ -13,7 +14,7 @@ Repository::Board::Board() {
 	}
 }
 bool Repository::Board::spawnPawn( ID::Entity::Field field, ID::Entity::Pawn pawn ) { //FIXME
-	board[field].pawn = pawn; 
+	board[field].pawn = pawn;
 	return true;
 }
 std::vector<ID::Entity::Field> Repository::Board::getFields() const {
@@ -28,11 +29,15 @@ std::vector<ID::Entity::Field> Repository::Board::getFields() const {
 
 Result<ID::Entity::Pawn> Repository::Board::getPawnID( ID::Entity::Field field ) const {
 
-	try{
-	if(board.at(field).pawn != 0 ) return Result<ID::Entity::Pawn>( board.at( field ).pawn );
-	else return Result<ID::Entity::Pawn>( true );
-	}catch(...)
-	{
+	try {
+		if( board.at( field ).pawn != 0 ) {
+			return Result<ID::Entity::Pawn>( board.at( field ).pawn );
+		}
+		else {
+			return Result<ID::Entity::Pawn>( true );
+		}
+	}
+	catch( ... ) {
 		return Result<ID::Entity::Pawn>( true );
 	}
 }
