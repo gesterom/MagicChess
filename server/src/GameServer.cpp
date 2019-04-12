@@ -32,17 +32,10 @@ GameServer::GameServer( const Config& config, IRepositoryFactory& repoFactory ) 
 
 	this->repoBoard = repoFactory.board();
 
-	std::cout << "Wx : " << PlayerW.x << " y: " << PlayerW.y << "\n";
-	std::cout << "Bx : " << PlayerB.x << " y: " << PlayerB.y << "\n";
 
 	//INIT GAME STATE
-	if( repoBoard->spawnPawn( PlayerW.y * this->wight + PlayerW.x, 1 ) ) {
-		std::cout << "error" << std::endl;
-	}//<<std::endl;;
-
-	std::cout << ( repoBoard->spawnPawn( PlayerB.y * this->wight + PlayerB.x, 2 ) ) << std::endl;;
-	
-	std::cout<<"Board - "<<std::hex<<repoBoard<<std::dec<<std::endl;
+	repoBoard->spawnPawn( PlayerW.y * this->wight + PlayerW.x, 1 );
+	repoBoard->spawnPawn( PlayerB.y * this->wight + PlayerB.x, 2 );
 }
 
 GameServer::~GameServer() {

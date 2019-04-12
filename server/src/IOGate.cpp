@@ -7,7 +7,7 @@ IOGate::IOGate( const RepositoryFactory& repoFactory, GameServer& gameServer, st
 	out( out ),
 	game( gameServer ) {
 	repoBoard = repoFactory.board();
-	std::cout<<"Board <> : "<<std::hex<<repoBoard<<std::dec<<std::endl;
+	std::cout << "Board <> : " << std::hex << repoBoard << std::dec << std::endl;
 }
 
 // void printHline( int wight ) {
@@ -56,44 +56,50 @@ IOGate::IOGate( const RepositoryFactory& repoFactory, GameServer& gameServer, st
 // 	printHline( wight );
 // }
 
-void printBoard(std::ostream& out, const Repository::IBoard* board){
+void printBoard( std::ostream& out, const Repository::IBoard* board ) {
 	auto fields = board->getFields();
-	std::sort(fields.begin(),fields.end());
-	for(int i = 0 ; i < 16 ; i++){
-		for(int j =0; j<16;j++)
-		{
-			out<<"+---+";
+	std::sort( fields.begin(), fields.end() );
+
+	for( int i = 0 ; i < 16 ; i++ ) {
+		for( int j = 0; j < 16; j++ ) {
+			out << "+---+";
 		}
-		out<<"\n";
-		for(int j = 0 ;j<16;j++)
-		{
-			out<<"|";
-			out.width(3);
-			out<<fields[i*16+j];
+
+		out << "\n";
+
+		for( int j = 0 ; j < 16; j++ ) {
+			out << "|";
+			out.width( 3 );
+			out << fields[i * 16 + j];
 			out.width();
-			out<<"|";
+			out << "|";
 		}
-		out<<"\n";
-		for(int j = 0 ;j<16;j++)
-		{
-			out<<"|";
-			out.width(3);
-			if(auto[res,error] = board->getPawnID(fields[i*16+j]); error ==true){
-				out<<".";
+
+		out << "\n";
+
+		for( int j = 0 ; j < 16; j++ ) {
+			out << "|";
+			out.width( 3 );
+
+			if( auto[res, error] = board->getPawnID( fields[i * 16 + j] ); error == true ) {
+				out << ".";
 			}
-			else{
-				out<<res;
+			else {
+				out << res;
 			}
+
 			out.width();
-			out<<"|";
+			out << "|";
 		}
-		out<<"\n";
-		for(int j =0; j<16;j++)
-		{
-			out<<"+---+";
-		}
-		out<<"\n";
+
+		out << "\n";
 	}
+
+	for( int j = 0; j < 16; j++ ) {
+		out << "+---+";
+	}
+
+	out << "\n";
 }
 
 void IOGate::run() {
@@ -101,10 +107,10 @@ void IOGate::run() {
 		std::string input;
 		out << "Prompt > ";
 		getline( in, input );
-		out << input << "\n";
+		//out << input << "\n";
 
 		if( input == "board" ) {
-			printBoard(out,repoBoard);
+			printBoard( out, repoBoard );
 		}
 		else if( input == "hand" ) {}
 		else if( input == "attack" ) {}
