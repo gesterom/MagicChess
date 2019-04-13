@@ -7,4 +7,6 @@ project (server VERSION 0.0.1 )
 include_directories("./include")
 file(GLOB SOURCES ./src/*.cpp ./src/Repository/*.cpp)
 
+configure_file(./default_config.ini ./config.ini COPYONLY)
+
 add_executable(server ./main.cpp ${SOURCES})

@@ -41,3 +41,22 @@ Result<ID::Entity::Pawn> Repository::Board::getPawnID( ID::Entity::Field field )
 		return Result<ID::Entity::Pawn>( true );
 	}
 }
+
+bool Repository::Board::movePawn( ID::Entity::Field from, ID::Entity::Field to){
+	try{
+		auto& _from = board.at(from);
+		auto& _to = board.at(to);
+	
+		_to.pawn = _from.pawn;	
+		_from.pawn=0;
+		return false;
+	}
+	catch(...)
+	{
+		std::cerr<<"board move Pawn"<<"\n"; //TODO add loger
+		return true;
+	}
+
+
+	return true;
+}

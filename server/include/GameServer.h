@@ -1,7 +1,7 @@
 #pragma once
 #include "Config.h"
 #include "Repository/IRepositoryFactory.h"
-#include "interface.h" // FIXME remove it too much dependency 
+#include "Contract.h" // FIXME remove it too much dependency 
 
 class GameServer {
 	int hight, wight;

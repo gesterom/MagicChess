@@ -15,5 +15,6 @@ namespace Repository {
 		virtual std::vector<ID::Entity::Field> getFields() const override;
 		virtual Result<ID::Entity::Pawn> getPawnID( ID::Entity::Field ) const override;
 		virtual bool spawnPawn( ID::Entity::Field, ID::Entity::Pawn ) override;
+		virtual bool movePawn( ID::Entity::Field from, ID::Entity::Field to) override;
 	};
 }

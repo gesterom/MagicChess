@@ -81,11 +81,12 @@ void printBoard( std::ostream& out, const Repository::IBoard* board ) {
 			out << "|";
 			out.width( 3 );
 
-			if( auto[res, error] = board->getPawnID( fields[i * 16 + j] ); error == true ) {
+			auto t = board->getPawnID( fields[i * 16 + j] ); 
+			if( t.error() ) {
 				out << ".";
 			}
 			else {
-				out << res;
+				out << t.value();
 			}
 
 			out.width();
