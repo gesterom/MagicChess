@@ -6,9 +6,9 @@
 class GameServer {
 	int hight, wight;
 	Repository::IBoard* repoBoard;
-	// Output& out;
   public:
 	GameServer( const Config& config, IRepositoryFactory& repo );
-	//void run();
+	bool move(ID::Match match, ID::Entity::Player, ID::Entity::Field from,ID::Entity::Field to);
+	void run();
 	~GameServer();
 };
